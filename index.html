@@ -61,14 +61,65 @@
         flex-direction: column;
         gap: 20px;
         align-items: center;
+        max-width: 400px;
+        margin: auto;
       "
     >
-      <a href="fiche1.html" class="card">📘 Fiche 1 : portrait professionnel</a>
-      <a href="fiche2.html" class="card"><span style="color: #ff3366;">📗</span>  Fiche 2 : test RIASEC</a>
-      <a href="fiche2.html" class="card">📗 Fiche 3 : portrait croisé</a>
+      <a href="fiche1.html" class="card">
+        <span class="icon blue">📘</span>
+        <span class="text">Fiche 1 : portrait professionnel</span>
+      </a>
+
+      <a href="fiche2.html" class="card">
+        <span class="icon pink">📗</span>
+        <span class="text">Fiche 2 : test RIASEC</span>
+      </a>
+
+      <a href="fiche3.html" class="card">
+        <span class="icon purple">📗</span>
+        <span class="text">Fiche 3 : portrait croisé</span>
+      </a>
     </div>
+
+    <style>
+      .menu .card {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        border-radius: 12px;
+        background-color: #f0f0f5;
+        color: #333;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        width: 100%;
+      }
+
+      .menu .card:hover {
+        background-color: #e0e0eb;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .icon {
+        font-size: 1.5em;
+        margin-right: 10px;
+      }
+
+      .icon.blue {
+        color: #3366ff;
+      }
+      .icon.pink {
+        color: #ff3366;
+      }
+      .icon.purple {
+        color: #9933cc;
+      }
+
+      .text {
+        font-size: 1em;
+        font-weight: 500;
+      }
+    </style>
   </body>
 </html>
-
-
-
