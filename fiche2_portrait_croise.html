@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portrait Croisé</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.5;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #2c5aa0;
+        padding-bottom: 15px;
+      }
+      .binome-info {
+        background: #f0f8ff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+      .binome-info input {
+        border: 2px solid #2c5aa0;
+        border-radius: 6px;
+        padding: 8px;
+        font-size: 16px;
+        width: 300px;
+        text-align: center;
+      }
+      .section {
+        background: #f8f9fa;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 8px;
+        border-left: 4px solid #2c5aa0;
+      }
+      .section h3 {
+        color: #2c5aa0;
+        margin-top: 0;
+      }
+      .points-forts {
+        display: grid;
+        gap: 15px;
+      }
+      .point-fort {
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 15px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+      }
+      .point-fort .number {
+        background: #2c5aa0;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-weight: bold;
+      }
+      .point-fort input {
+        flex: 1;
+        border: none;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 8px;
+        font-size: 14px;
+      }
+      .point-fort input:focus {
+        outline: none;
+        border-bottom-color: #2c5aa0;
+      }
+      .competences-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .competence-category {
+        background: white;
+        padding: 15px;
+        border-radius: 6px;
+      }
+      .competence-category h4 {
+        margin-top: 0;
+        color: #2c5aa0;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 5px;
+      }
+      .competence-item {
+        margin: 10px 0;
+      }
+      .competence-item input {
+        width: 100%;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 8px;
+      }
+      .style-travail {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .style-option {
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+      }
+      .style-option:hover {
+        border-color: #2c5aa0;
+        background: #f0f8ff;
+      }
+      .style-option input[type="checkbox"] {
+        margin-right: 10px;
+        transform: scale(1.3);
+      }
+      .style-option.selected {
+        background: #e8f4f8;
+        border-color: #2c5aa0;
+      }
+      .textarea-field {
+        width: 100%;
+        min-height: 80px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        padding: 12px;
+        font-family: Arial, sans-serif;
+        resize: vertical;
+      }
+      .textarea-field:focus {
+        outline: none;
+        border-color: #2c5aa0;
+      }
+      .metier-section {
+        background: #fff8dc;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+      .metier-input {
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        color: #2c5aa0;
+        border: 2px solid #2c5aa0;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      .conseils-section {
+        background: #e8f5e8;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+      .btn-generate {
+        background: #2c5aa0;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 20px auto;
+        display: block;
+      }
+      .btn-generate:hover {
+        background: #1e3f73;
+      }
+      .portrait-summary {
+        background: #e8f4f8;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 8px;
+        display: none;
+      }
+      @media print {
+        body {
+          font-size: 12px;
+        }
+        .btn-generate {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>FICHE 3 - Portrait Croisé</h1>
+      <p><strong>Terminale BAC PRO OTM - Lycée Tuianu le Gayic</strong></p>
+      <p><em>Dresse le portrait professionnel de ton camarade</em></p>
+    </div>
+
+    <div class="binome-info">
+      <h3>👥 Mon Binôme</h3>
+      <input
+        type="text"
+        id="nom-binome"
+        placeholder="Nom et Prénom de mon camarade"
+      />
+    </div>
+
+    <div class="section">
+      <h3>⭐ Ses 3 Points Forts Professionnels</h3>
+      <div class="points-forts">
+        <div class="point-fort">
+          <div class="number">1</div>
+          <input
+            type="text"
+            id="point-fort-1"
+            placeholder="Son principal point fort professionnel"
+          />
+        </div>
+        <div class="point-fort">
+          <div class="number">2</div>
+          <input
+            type="text"
+            id="point-fort-2"
+            placeholder="Son deuxième point fort"
+          />
+        </div>
+        <div class="point-fort">
+          <div class="number">3</div>
+          <input
+            type="text"
+            id="point-fort-3"
+            placeholder="Son troisième point fort"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🔧 Ses Compétences Techniques Maîtrisées</h3>
+      <div class="competences-grid">
+        <div class="competence-category">
+          <h4>En OTM :</h4>
+          <div class="competence-item">
+            <input
+              type="text"
+              id="comp-otm"
+              placeholder="Ex: Gestion des stocks, planification..."
+            />
+          </div>
+        </div>
+        <div class="competence-category">
+          <h4>En informatique :</h4>
+          <div class="competence-item">
+            <input
+              type="text"
+              id="comp-info"
+              placeholder="Ex: Excel, logiciels ERP..."
+            />
+          </div>
+        </div>
+        <div class="competence-category">
+          <h4>En langues :</h4>
+          <div class="competence-item">
+            <input
+              type="text"
+              id="comp-langues"
+              placeholder="Ex: Anglais, Tahitien..."
+            />
+          </div>
+        </div>
+        <div class="competence-category">
+          <h4>Autres :</h4>
+          <div class="competence-item">
+            <input
+              type="text"
+              id="comp-autres"
+              placeholder="Ex: Permis, certifications..."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>💼 Son Style de Travail</h3>
+      <p>
+        <em>Coche les cases qui correspondent le mieux à ton camarade :</em>
+      </p>
+      <div class="style-travail">
+        <div class="style-option">
+          <input type="checkbox" id="style-solitaire" />
+          <label for="style-solitaire">Plutôt solitaire</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-equipe" />
+          <label for="style-equipe">Plutôt en équipe</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-methodique" />
+          <label for="style-methodique">Méthodique</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-spontane" />
+          <label for="style-spontane">Spontané</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-leader" />
+          <label for="style-leader">Leader</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-suiveur" />
+          <label for="style-suiveur">Suiveur</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-creatif" />
+          <label for="style-creatif">Créatif</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-rigoureux" />
+          <label for="style-rigoureux">Rigoureux</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-rapide" />
+          <label for="style-rapide">Rapide</label>
+        </div>
+        <div class="style-option">
+          <input type="checkbox" id="style-reflechi" />
+          <label for="style-reflechi">Réfléchi</label>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .style-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+      }
+
+      .style-option:hover {
+        background-color: #f0f0f0;
+      }
+
+      .style-option input[type="checkbox"] {
+        margin-right: 8px;
+        cursor: pointer;
+      }
+
+      .style-option label {
+        cursor: pointer;
+        flex: 1;
+        user-select: none;
+      }
+
+      .style-option.checked {
+        background-color: #e3f2fd;
+        border: 1px solid #2196f3;
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Gestion des clics sur les options de style
+        const styleOptions = document.querySelectorAll(".style-option");
+
+        styleOptions.forEach((option) => {
+          const checkbox = option.querySelector('input[type="checkbox"]');
+          const label = option.querySelector("label");
+
+          // Clic sur toute la zone de l'option
+          option.addEventListener("click", function (e) {
+            // Éviter le double déclenchement si on clique directement sur le checkbox
+            if (e.target.type !== "checkbox") {
+              checkbox.checked = !checkbox.checked;
+              updateOptionStyle(option, checkbox.checked);
+            }
+          });
+
+          // Gestion directe du checkbox
+          checkbox.addEventListener("change", function () {
+            updateOptionStyle(option, this.checked);
+          });
+
+          // Clic sur le label
+          label.addEventListener("click", function (e) {
+            e.preventDefault(); // Empêche le comportement par défaut du label
+            checkbox.checked = !checkbox.checked;
+            updateOptionStyle(option, checkbox.checked);
+          });
+        });
+
+        function updateOptionStyle(option, isChecked) {
+          if (isChecked) {
+            option.classList.add("checked");
+          } else {
+            option.classList.remove("checked");
+          }
+        }
+      });
+    </script>
+
+    <div class="section">
+      <h3>🎯 Ce qui le Motive le Plus</h3>
+      <textarea
+        id="motivation"
+        class="textarea-field"
+        placeholder="Décris ce qui motive vraiment ton camarade dans le travail (challenges, reconnaissance, aider les autres, sécurité, etc.)"
+      ></textarea>
+    </div>
+
+    <div class="metier-section">
+      <h3>💼 Le Métier qui lui Correspond le Mieux</h3>
+      <input
+        type="text"
+        id="metier"
+        class="metier-input"
+        placeholder="Quel métier lui correspond selon toi ?"
+      />
+      <h4>Pourquoi ce métier ?</h4>
+      <textarea
+        id="justification-metier"
+        class="textarea-field"
+        placeholder="Explique pourquoi tu penses que ce métier lui correspond (ses qualités, compétences, motivations...)"
+      ></textarea>
+    </div>
+
+    <div class="section">
+      <h3>📈 Ses Axes de Progrès</h3>
+      <p><em>Avec bienveillance, qu'est-ce qu'il pourrait développer ?</em></p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+        <div>
+          <h4>À développer :</h4>
+          <input
+            type="text"
+            id="a-developper"
+            class="competence-item"
+            style="width: 100%"
+            placeholder="Compétence à développer"
+          />
+        </div>
+        <div>
+          <h4>À renforcer :</h4>
+          <input
+            type="text"
+            id="a-renforcer"
+            class="competence-item"
+            style="width: 100%"
+            placeholder="Point fort à renforcer"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="conseils-section">
+      <h3>💡 Mes Conseils pour son Projet Professionnel</h3>
+      <textarea
+        id="conseils"
+        class="textarea-field"
+        placeholder="Quels conseils lui donnerais-tu pour son orientation et son projet professionnel ?"
+      ></textarea>
+    </div>
+
+    <button class="btn-generate" onclick="generatePortrait()">
+      📋 Générer le Portrait de mon Camarade
+    </button>
+
+    <div id="portrait-summary" class="portrait-summary">
+      <h3>📋 Portrait Professionnel Complété</h3>
+      <div id="portrait-content"></div>
+    </div>
+
+    <script>
+      function toggleStyle(element) {
+        const checkbox = element.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
+
+        if (checkbox.checked) {
+          element.classList.add("selected");
+        } else {
+          element.classList.remove("selected");
+        }
+      }
+
+      function generatePortrait() {
+        const nomBinome = document.getElementById("nom-binome").value;
+        const pointsForts = [
+          document.getElementById("point-fort-1").value,
+          document.getElementById("point-fort-2").value,
+          document.getElementById("point-fort-3").value,
+        ].filter((point) => point.trim() !== "");
+
+        const competences = {
+          otm: document.getElementById("comp-otm").value,
+          info: document.getElementById("comp-info").value,
+          langues: document.getElementById("comp-langues").value,
+          autres: document.getElementById("comp-autres").value,
+        };
+
+        // Récupérer les styles sélectionnés
+        const styles = [];
+        document
+          .querySelectorAll(".style-option input:checked")
+          .forEach((checkbox) => {
+            styles.push(checkbox.nextElementSibling.textContent);
+          });
+
+        const motivation = document.getElementById("motivation").value;
+        const metier = document.getElementById("metier").value;
+        const justificationMetier = document.getElementById(
+          "justification-metier"
+        ).value;
+        const aDevelopper = document.getElementById("a-developper").value;
+        const aRenforcer = document.getElementById("a-renforcer").value;
+        const conseils = document.getElementById("conseils").value;
+
+        // Générer le portrait
+        let portraitHTML = `
+                <div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #2c5aa0;">
+                    <h2 style="color: #2c5aa0; text-align: center; margin-bottom: 30px;">
+                        Portrait Professionnel de ${
+                          nomBinome || "[Nom du camarade]"
+                        }
+                    </h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                        <div>
+                            <h4 style="color: #2c5aa0; border-bottom: 2px solid #2c5aa0; padding-bottom: 5px;">
+                                ⭐ Ses Points Forts
+                            </h4>
+                            ${
+                              pointsForts.length > 0
+                                ? pointsForts
+                                    .map(
+                                      (point, index) =>
+                                        `<p><strong>${
+                                          index + 1
+                                        }.</strong> ${point}</p>`
+                                    )
+                                    .join("")
+                                : '<p style="color: #888;">À compléter...</p>'
+                            }
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: #2c5aa0; border-bottom: 2px solid #2c5aa0; padding-bottom: 5px;">
+                                💼 Son Style de Travail
+                            </h4>
+                            ${
+                              styles.length > 0
+                                ? `<p>${styles.join(", ")}</p>`
+                                : '<p style="color: #888;">Aucun style sélectionné</p>'
+                            }
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin: 20px 0;">
+                        <h4 style="color: #2c5aa0; margin-top: 0;">🔧 Ses Compétences Techniques</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div><strong>OTM :</strong> ${
+                              competences.otm || "À compléter"
+                            }</div>
+                            <div><strong>Informatique :</strong> ${
+                              competences.info || "À compléter"
+                            }</div>
+                            <div><strong>Langues :</strong> ${
+                              competences.langues || "À compléter"
+                            }</div>
+                            <div><strong>Autres :</strong> ${
+                              competences.autres || "À compléter"
+                            }</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #fff8dc; padding: 15px; border-radius: 6px; margin: 20px 0;">
+                        <h4 style="color: #2c5aa0; margin-top: 0;">🎯 Ce qui le Motive</h4>
+                        <p>${motivation || "À compléter..."}</p>
+                    </div>
+                    
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 6px; margin: 20px 0;">
+                        <h4 style="color: #2c5aa0; margin-top: 0;">💼 Métier Recommandé</h4>
+                        <p><strong>${
+                          metier || "[Métier à définir]"
+                        }</strong></p>
+                        ${
+                          justificationMetier
+                            ? `<p><strong>Pourquoi ?</strong> ${justificationMetier}</p>`
+                            : ""
+                        }
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                        <div style="background: #ffe6e6; padding: 15px; border-radius: 6px;">
+                            <h4 style="color: #d63031; margin-top: 0;">📈 À Développer</h4>
+                            <p>${aDevelopper || "À compléter..."}</p>
+                        </div>
+                        <div style="background: #e6f3ff; padding: 15px; border-radius: 6px;">
+                            <h4 style="color: #0984e3; margin-top: 0;">💪 À Renforcer</h4>
+                            <p>${aRenforcer || "À compléter..."}</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 6px; margin: 20px 0;">
+                        <h4 style="color: #2c5aa0; margin-top: 0;">💡 Mes Conseils</h4>
+                        <p>${
+                          conseils || "Aucun conseil donné pour le moment..."
+                        }</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #2c5aa0;">
+                        <p style="color: #666; font-style: italic;">
+                            Portrait réalisé par un(e) camarade de classe<br>
+                            Terminale BAC PRO OTM - Lycée Tuianu le Gayic
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="background: #e8f4f8; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="color: #2c5aa0;">📊 Analyse du Portrait</h4>
+                    ${analyzePortrait(
+                      pointsForts,
+                      styles,
+                      competences,
+                      motivation,
+                      metier
+                    )}
+                </div>
+            `;
+
+        document.getElementById("portrait-content").innerHTML = portraitHTML;
+        document.getElementById("portrait-summary").style.display = "block";
+
+        // Scroll vers les résultats
+        document
+          .getElementById("portrait-summary")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      function analyzePortrait(
+        pointsForts,
+        styles,
+        competences,
+        motivation,
+        metier
+      ) {
+        let analysis = "<ul>";
+
+        // Analyse des points forts
+        if (pointsForts.length >= 3) {
+          analysis +=
+            "<li><strong>✅ Points forts bien identifiés :</strong> Tu as su identifier les qualités de ton camarade, ce qui montre ta capacité d'observation.</li>";
+        } else {
+          analysis +=
+            "<li><strong>⚠️ Points forts à approfondir :</strong> N'hésite pas à creuser davantage les qualités de ton camarade.</li>";
+        }
+
+        // Analyse du style de travail
+        if (styles.length >= 3) {
+          analysis +=
+            "<li><strong>✅ Style de travail défini :</strong> Tu as une vision claire de la façon de travailler de ton camarade.</li>";
+        } else {
+          analysis +=
+            "<li><strong>⚠️ Style de travail à préciser :</strong> Observe mieux comment ton camarade travaille en classe et en groupe.</li>";
+        }
+
+        // Analyse des compétences
+        const competencesRemplies = Object.values(competences).filter(
+          (comp) => comp.trim() !== ""
+        ).length;
+        if (competencesRemplies >= 3) {
+          analysis +=
+            "<li><strong>✅ Compétences bien cernées :</strong> Tu connais les domaines de compétence de ton camarade.</li>";
+        }
+
+        // Analyse de la motivation
+        if (motivation && motivation.length > 50) {
+          analysis +=
+            "<li><strong>✅ Motivations comprises :</strong> Tu as bien saisi ce qui anime ton camarade professionnellement.</li>";
+        } else {
+          analysis +=
+            "<li><strong>⚠️ Motivations à creuser :</strong> Essaie de mieux comprendre ce qui motive ton camarade.</li>";
+        }
+
+        // Analyse de la cohérence métier
+        if (metier && metier.trim() !== "") {
+          analysis +=
+            "<li><strong>💼 Métier proposé :</strong> Ta suggestion de métier sera intéressante à confronter avec l'auto-évaluation de ton camarade.</li>";
+        }
+
+        analysis += "</ul>";
+
+        analysis += `
+                <div style="background: white; padding: 15px; border-radius: 6px; margin-top: 15px;">
+                    <h5 style="color: #2c5aa0;">🤝 Ce que cet exercice t'apprend :</h5>
+                    <p>• <strong>Sur les autres :</strong> Chacun a des forces et un style de travail unique</p>
+                    <p>• <strong>Sur toi :</strong> Ta capacité à observer et analyser les autres</p>
+                    <p>• <strong>Sur l'équipe :</strong> La complémentarité des profils est un atout</p>
+                    <p>• <strong>Pour l'avenir :</strong> Savoir identifier les compétences sera utile en management</p>
+                </div>
+            `;
+
+        return analysis;
+      }
+
+      // Validation en temps réel
+      document.addEventListener("input", function (e) {
+        // Compter les champs remplis
+        const totalFields = 11; // Nombre total de champs principaux
+        let filledFields = 0;
+
+        // Vérifier les champs texte
+        const textFields = [
+          "nom-binome",
+          "point-fort-1",
+          "point-fort-2",
+          "point-fort-3",
+          "comp-otm",
+          "motivation",
+          "metier",
+          "conseils",
+        ];
+        textFields.forEach((id) => {
+          if (document.getElementById(id).value.trim() !== "") {
+            filledFields++;
+          }
+        });
+
+        // Vérifier les styles sélectionnés
+        if (
+          document.querySelectorAll(".style-option input:checked").length > 0
+        ) {
+          filledFields++;
+        }
+
+        // Mettre à jour le bouton
+        const btn = document.querySelector(".btn-generate");
+        if (filledFields >= 6) {
+          btn.style.background = "#2c5aa0";
+          btn.innerHTML = "📋 Générer le Portrait Complet";
+        } else {
+          btn.style.background = "#888";
+          btn.innerHTML = `📋 Compléter le Portrait (${filledFields}/6 minimum)`;
+        }
+      });
+    </script>
+  </body>
+</html>

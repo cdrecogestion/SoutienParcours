@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portrait Professionnel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c5aa0;
+            padding-bottom: 15px;
+        }
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .student-info input {
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 5px;
+            font-size: 14px;
+            width: 200px;
+        }
+        .section {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2c5aa0;
+        }
+        .section h3 {
+            color: #2c5aa0;
+            margin-top: 0;
+        }
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .competence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+        .rating-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+        }
+        .rating-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .rating-button {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .rating-button:hover {
+            border-color: #2c5aa0;
+        }
+        .rating-button.selected {
+            background: #2c5aa0;
+            color: white;
+            border-color: #2c5aa0;
+        }
+        .priority-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .priority-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .priority-item input[type="number"] {
+            width: 40px;
+            margin-right: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .results {
+            background: #e8f4f8;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            display: none;
+        }
+        .results h3 {
+            color: #2c5aa0;
+            margin-top: 0;
+        }
+        .btn-analyze {
+            background: #2c5aa0;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px auto;
+            display: block;
+        }
+        .btn-analyze:hover {
+            background: #1e3f73;
+        }
+        @media print {
+            body { font-size: 12px; }
+            .btn-analyze { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FICHE 1 - Mon Portrait Professionnel</h1>
+        <p><strong>Terminale BAC PRO OTM - Lycée Tuianu le Gayic</strong></p>
+    </div>
+
+    <div class="student-info">
+        <div>
+            <strong>Nom :</strong> 
+            <input type="text" id="nom" placeholder="Votre nom">
+        </div>
+        <div>
+            <strong>Prénom :</strong> 
+            <input type="text" id="prenom" placeholder="Votre prénom">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>🔧 Dimension 1 : Mes compétences techniques</h3>
+        
+        <h4>Dans ma spécialité OTM :</h4>
+        <div class="competence-grid">
+            <div class="checkbox-item">
+                <input type="checkbox" id="stock" data-category="otm">
+                <label for="stock">Gestion des stocks</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="transport" data-category="otm">
+                <label for="transport">Planification transport</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="douanes" data-category="otm">
+                <label for="douanes">Procédures douanières</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="tms" data-category="otm">
+                <label for="tms">Utilisation TMS</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="reglementation" data-category="otm">
+                <label for="reglementation">Réglementation transport</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="litiges" data-category="otm">
+                <label for="litiges">Gestion des litiges</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="couts" data-category="otm">
+                <label for="couts">Calcul de coûts</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="tracabilite" data-category="otm">
+                <label for="tracabilite">Traçabilité</label>
+            </div>
+        </div>
+
+        <div class="two-columns">
+            <div>
+                <h4>Informatique :</h4>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="bureautique" data-category="info">
+                    <label for="bureautique">Pack Office</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="erp" data-category="info">
+                    <label for="erp">Logiciels ERP</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="internet" data-category="info">
+                    <label for="internet">Recherche web</label>
+                </div>
+            </div>
+            <div>
+                <h4>Langues :</h4>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="anglais" data-category="langue">
+                    <label for="anglais">Anglais professionnel</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="tahitien" data-category="langue">
+                    <label for="tahitien">Tahitien</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="permis" data-category="autre">
+                    <label for="permis">Permis de conduire</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>⚡ Dimension 2 : Mes compétences transversales</h3>
+        <p><em>Évalue-toi de 1 (faible) à 5 (excellent)</em></p>
+
+        <h4>Communication :</h4>
+        <div class="rating-group">
+            <span>À l'oral avec mes collègues</span>
+            <div class="rating-buttons">
+                <button class="rating-button" data-skill="oral" data-value="1">1</button>
+                <button class="rating-button" data-skill="oral" data-value="2">2</button>
+                <button class="rating-button" data-skill="oral" data-value="3">3</button>
+                <button class="rating-button" data-skill="oral" data-value="4">4</button>
+                <button class="rating-button" data-skill="oral" data-value="5">5</button>
+            </div>
+        </div>
+        <div class="rating-group">
+            <span>À l'écrit (mails, rapports)</span>
+            <div class="rating-buttons">
+                <button class="rating-button" data-skill="ecrit" data-value="1">1</button>
+                <button class="rating-button" data-skill="ecrit" data-value="2">2</button>
+                <button class="rating-button" data-skill="ecrit" data-value="3">3</button>
+                <button class="rating-button" data-skill="ecrit" data-value="4">4</button>
+                <button class="rating-button" data-skill="ecrit" data-value="5">5</button>
+            </div>
+        </div>
+        <div class="rating-group">
+            <span>Avec la clientèle</span>
+            <div class="rating-buttons">
+                <button class="rating-button" data-skill="client" data-value="1">1</button>
+                <button class="rating-button" data-skill="client" data-value="2">2</button>
+                <button class="rating-button" data-skill="client" data-value="3">3</button>
+                <button class="rating-button" data-skill="client" data-value="4">4</button>
+                <button class="rating-button" data-skill="client" data-value="5">5</button>
+            </div>
+        </div>
+
+        <div class="two-columns">
+            <div>
+                <h4>Organisation :</h4>
+                <div class="rating-group">
+                    <span>Gestion du temps</span>
+                    <div class="rating-buttons">
+                        <button class="rating-button" data-skill="temps" data-value="1">1</button>
+                        <button class="rating-button" data-skill="temps" data-value="2">2</button>
+                        <button class="rating-button" data-skill="temps" data-value="3">3</button>
+                        <button class="rating-button" data-skill="temps" data-value="4">4</button>
+                        <button class="rating-button" data-skill="temps" data-value="5">5</button>
+                    </div>
+                </div>
+                <div class="rating-group">
+                    <span>Rigueur et précision</span>
+                    <div class="rating-buttons">
+                        <button class="rating-button" data-skill="rigueur" data-value="1">1</button>
+                        <button class="rating-button" data-skill="rigueur" data-value="2">2</button>
+                        <button class="rating-button" data-skill="rigueur" data-value="3">3</button>
+                        <button class="rating-button" data-skill="rigueur" data-value="4">4</button>
+                        <button class="rating-button" data-skill="rigueur" data-value="5">5</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h4>Adaptation :</h4>
+                <div class="rating-group">
+                    <span>Travail en équipe</span>
+                    <div class="rating-buttons">
+                        <button class="rating-button" data-skill="equipe" data-value="1">1</button>
+                        <button class="rating-button" data-skill="equipe" data-value="2">2</button>
+                        <button class="rating-button" data-skill="equipe" data-value="3">3</button>
+                        <button class="rating-button" data-skill="equipe" data-value="4">4</button>
+                        <button class="rating-button" data-skill="equipe" data-value="5">5</button>
+                    </div>
+                </div>
+                <div class="rating-group">
+                    <span>Autonomie</span>
+                    <div class="rating-buttons">
+                        <button class="rating-button" data-skill="autonomie" data-value="1">1</button>
+                        <button class="rating-button" data-skill="autonomie" data-value="2">2</button>
+                        <button class="rating-button" data-skill="autonomie" data-value="3">3</button>
+                        <button class="rating-button" data-skill="autonomie" data-value="4">4</button>
+                        <button class="rating-button" data-skill="autonomie" data-value="5">5</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>❤️ Dimension 3 : Mes valeurs et motivations</h3>
+        
+        <h4>Ce qui me motive au travail (classe de 1 à 8 par ordre d'importance) :</h4>
+        <div class="priority-grid">
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="responsabilites">
+                <label>Avoir des responsabilités</label>
+            </div>
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="reconnaissance">
+                <label>Être reconnu</label>
+            </div>
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="aider">
+                <label>Aider les autres</label>
+            </div>
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="defis">
+                <label>Relever des défis</label>
+            </div>
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="salaire">
+                <label>Bon salaire</label>
+            </div>
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="securite">
+                <label>Sécurité d'emploi</label>
+            </div>
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="apprendre">
+                <label>Apprendre</label>
+            </div>
+            <div class="priority-item">
+                <input type="number" min="1" max="8" data-motivation="equilibre">
+                <label>Équilibre vie pro/perso</label>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-analyze" onclick="analyzeProfile()">📊 Analyser mon profil</button>
+
+    <div id="results" class="results">
+        <h3>📋 Mon Profil Professionnel</h3>
+        <div id="profile-summary"></div>
+    </div>
+
+    <script>
+        // Gestion des notes (boutons 1-5)
+        document.querySelectorAll('.rating-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const skill = this.dataset.skill;
+                const value = this.dataset.value;
+                
+                // Enlever la sélection des autres boutons du même skill
+                document.querySelectorAll(`[data-skill="${skill}"]`).forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                
+                // Ajouter la sélection au bouton cliqué
+                this.classList.add('selected');
+            });
+        });
+
+        // Fonction d'analyse du profil
+        function analyzeProfile() {
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            
+            // Compter les compétences techniques
+            const competencesOTM = document.querySelectorAll('input[data-category="otm"]:checked').length;
+            const competencesInfo = document.querySelectorAll('input[data-category="info"]:checked').length;
+            const competencesLangue = document.querySelectorAll('input[data-category="langue"]:checked').length;
+            
+            // Récupérer les notes des compétences transversales
+            const skills = {};
+            document.querySelectorAll('.rating-button.selected').forEach(button => {
+                skills[button.dataset.skill] = parseInt(button.dataset.value);
+            });
+            
+            // Analyser les motivations
+            const motivations = {};
+            document.querySelectorAll('input[data-motivation]').forEach(input => {
+                if (input.value) {
+                    motivations[input.dataset.motivation] = parseInt(input.value);
+                }
+            });
+            
+            // Générer le profil
+            let profileHTML = `
+                <div style="margin-bottom: 20px;">
+                    <strong>Élève :</strong> ${prenom} ${nom}
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4>🔧 Compétences Techniques</h4>
+                        <p><strong>OTM :</strong> ${competencesOTM}/8 maîtrisées</p>
+                        <p><strong>Informatique :</strong> ${competencesInfo}/3 maîtrisées</p>
+                        <p><strong>Langues :</strong> ${competencesLangue}/2 maîtrisées</p>
+                        
+                        ${competencesOTM >= 6 ? '<p style="color: green;">✅ Très bon niveau technique OTM</p>' : 
+                          competencesOTM >= 4 ? '<p style="color: orange;">⚠️ Niveau technique à renforcer</p>' : 
+                          '<p style="color: red;">❗ Compétences techniques à développer</p>'}
+                    </div>
+                    
+                    <div>
+                        <h4>⚡ Compétences Transversales</h4>
+                        ${Object.keys(skills).length > 0 ? 
+                            Object.entries(skills).map(([skill, value]) => {
+                                const skillNames = {
+                                    'oral': 'Communication orale',
+                                    'ecrit': 'Communication écrite',
+                                    'client': 'Relation client',
+                                    'temps': 'Gestion du temps',
+                                    'rigueur': 'Rigueur',
+                                    'equipe': 'Travail en équipe',
+                                    'autonomie': 'Autonomie'
+                                };
+                                const color = value >= 4 ? 'green' : value >= 3 ? 'orange' : 'red';
+                                return `<p style="color: ${color};">${skillNames[skill]}: ${value}/5</p>`;
+                            }).join('') : '<p>Complétez l\'évaluation</p>'
+                        }
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>❤️ Principales Motivations</h4>
+                    ${Object.keys(motivations).length > 0 ? 
+                        Object.entries(motivations)
+                            .sort(([,a], [,b]) => a - b)
+                            .slice(0, 3)
+                            .map(([motivation, rank]) => {
+                                const motivationNames = {
+                                    'responsabilites': 'Avoir des responsabilités',
+                                    'reconnaissance': 'Être reconnu',
+                                    'aider': 'Aider les autres',
+                                    'defis': 'Relever des défis',
+                                    'salaire': 'Bon salaire',
+                                    'securite': 'Sécurité d\'emploi',
+                                    'apprendre': 'Apprendre continuellement',
+                                    'equilibre': 'Équilibre vie pro/perso'
+                                };
+                                return `<p><strong>${rank}.</strong> ${motivationNames[motivation]}</p>`;
+                            }).join('') : '<p>Complétez le classement des motivations</p>'
+                    }
+                </div>
+                
+                <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <h4>💼 Suggestions de métiers OTM pour votre profil :</h4>
+                    ${competencesOTM >= 6 && (skills.rigueur >= 4 || skills.autonomie >= 4) ?
+                        '<p>• <strong>Responsable d\'entrepôt</strong> - Gestion d\'équipe et organisation</p><p>• <strong>Coordinateur transport</strong> - Planification et suivi des livraisons</p>' :
+                        competencesOTM >= 4 && skills.client >= 3 ?
+                        '<p>• <strong>Agent de transit</strong> - Interface client et prestataires</p><p>• <strong>Gestionnaire de stocks</strong> - Suivi et approvisionnement</p>' :
+                        '<p>• <strong>Assistant logistique</strong> - Soutien opérationnel</p><p>• <strong>Magasinier</strong> - Réception et expédition</p>'
+                    }
+                </div>
+            `;
+            
+            document.getElementById('profile-summary').innerHTML = profileHTML;
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll vers les résultats
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
