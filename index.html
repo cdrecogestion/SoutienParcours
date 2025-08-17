@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accueil - Soutien au parcours BAC PRO</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1f8d77 0%, #9face6 100%);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.8em;
+        margin-bottom: 10px;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      h2 {
+        font-size: 1.8em;
+        margin-bottom: 40px;
+        color: #f9f9f9;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      .menu {
+        display: flex;
+        gap: 30px;
+      }
+      .card {
+        background: white;
+        padding: 30px 50px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+        font-weight: bold;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        background: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Soutien au Parcours</h1>
+    <h2>BAC PRO</h2>
+
+    <div
+      class="menu"
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      "
+    >
+      <a href="page1.html" class="card">📘 Fiche 1 : portrait professionnel</a>
+      <a href="page2.html" class="card">📗 Fiche 2 : portrait croisé</a>
+    </div>
+  </body>
+</html>
